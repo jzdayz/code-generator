@@ -16,6 +16,7 @@ public class CodeGeneratorApplication {
                 ServerSocket serverSocket = new ServerSocket(i);
                 serverSocket.close();
                 System.setProperty("server.port", String.valueOf(i));
+                break;
             } catch (Exception e) {
                 // ignore
             }
