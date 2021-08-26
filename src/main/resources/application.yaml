@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:h2:${java.io.tmpdir}${path.separator}code-generator-db
+  sql:
+    init:
+      schema-locations: classpath*:h2.sql
+      mode: always

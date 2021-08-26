@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+</head>
+<body>
+
+<div id="v-model-select" class="demo">
+    <select v-model="selected" @change='getValue'>
+        <option disabled value="">Please select one</option>
+        <option v-for=" d in data">
+            {{d}}
+        </option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+</div>
+
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                selected: '',
+                data:[
+                    "a",
+                    "b",
+                    "c"
+                ]
+            }
+        },
+        methods: {
+            getValue(){
+                console.log('您选择了', this.selected)
+            }
+        }
+    }).mount('#v-model-select')
+</script>
+</body>
+</html>

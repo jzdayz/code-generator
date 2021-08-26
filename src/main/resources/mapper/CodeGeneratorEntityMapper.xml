@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.jzdayz.mapper.CodeGeneratorEntityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="io.github.jzdayz.entity.CodeGeneratorEntity">
+        <id column="ID" property="id" />
+        <result column="JDBC" property="jdbc" />
+        <result column="ALIAS" property="alias" />
+        <result column="USER" property="user" />
+        <result column="SCHEMA" property="schema" />
+        <result column="TABLE_STRING" property="tableString" />
+        <result column="TF_TYPE" property="tfType" />
+        <result column="MBP_PACKAGE" property="mbpPackage" />
+        <result column="SWAGGER" property="swagger" />
+        <result column="LOMBOK" property="lombok" />
+        <result column="TABLE_NAME_FORMAT" property="tableNameFormat" />
+    </resultMap>
+
+</mapper>
