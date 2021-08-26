@@ -144,7 +144,7 @@
         },
         methods: {
             initData() {
-                let result = JSON.parse(httpGet("http://localhost:8080/mbp/init-info"));
+                let result = JSON.parse(httpGet("/mbp/init-info"));
                 let data = result['data'];
                 if (data == null) {
                     return;
