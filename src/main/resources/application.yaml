@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:h2:${user.home}${path.separator}code-generator-db
+    url: jdbc:p6spy:h2:${user.home}${file.separator}code-generator-db
   sql:
     init:
       schema-locations: classpath*:h2.sql
