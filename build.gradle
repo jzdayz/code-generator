@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'io.github.jzdayz'
-version = '1.0.1'
+version = 'all'
 sourceCompatibility = '1.8'
 
 configurations {
