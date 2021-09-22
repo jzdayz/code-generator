@@ -1,8 +1,10 @@
 package io.github.jzdayz.logic.service;
 
+import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
+import cn.hutool.poi.excel.ExcelUtil;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.builder.Controller;
@@ -31,11 +33,14 @@ public class MbpGenerator {
     private static final String TEMP_PATH = System.getProperty("java.io.tmpdir") + "code-generator" + File.separator;
 
     private static Field NAME_CONVERT;
+    private static Field TABLE_FIELD_CONVERT;
 
     static {
         try {
             NAME_CONVERT = Entity.class.getDeclaredField("nameConvert");
             NAME_CONVERT.setAccessible(true);
+            TABLE_FIELD_CONVERT = TableField.class.getDeclaredField("convert");
+            TABLE_FIELD_CONVERT.setAccessible(true);
         } catch (NoSuchFieldException e) {
             log.error("field", e);
             System.exit(0);
@@ -70,6 +75,14 @@ public class MbpGenerator {
                 public String entityNameConvert(TableInfo tableInfo) {
                     String name = nameConvert.entityNameConvert(tableInfo);
                     String tableNameFormat = cg.getTableNameFormat();
+                    // 处理下字段的convert
+                    tableInfo.getFields().forEach(tableField -> {
+                        try {
+                            TABLE_FIELD_CONVERT.set(tableField, true);
+                        } catch (IllegalAccessException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
                     if (StrUtil.isBlank(tableNameFormat)) {
                         return name;
                     }
@@ -96,7 +109,7 @@ public class MbpGenerator {
             gcBuild.enableSwagger();
         }
         DataSourceConfig.Builder dsBuild = new DataSourceConfig.Builder(cg.getJdbc(), cg.getUser(), cg.getPwd());
-        if (StrUtil.isNotBlank(cg.getSchema())){
+        if (StrUtil.isNotBlank(cg.getSchema())) {
             dsBuild.schema(cg.getSchema());
         }
         new AutoGenerator(dsBuild.build())
