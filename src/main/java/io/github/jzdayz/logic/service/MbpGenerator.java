@@ -52,6 +52,7 @@ public class MbpGenerator {
                 .controllerBuilder().enableRestStyle().enableHyphenStyle();
         Entity.Builder entityBuild = controllerBuild
                 .entityBuilder().naming(NamingStrategy.underline_to_camel);
+        entityBuild.enableTableFieldAnnotation();
         if (cg.getLombok()) {
             entityBuild.enableLombok();
         }
