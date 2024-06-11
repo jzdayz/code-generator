@@ -1,10 +1,8 @@
 package io.github.jzdayz.logic.service;
 
-import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
-import cn.hutool.poi.excel.ExcelUtil;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.builder.Controller;
@@ -100,8 +98,7 @@ public class MbpGenerator {
         }
         GlobalConfig.Builder gcBuild = new GlobalConfig
                 .Builder()
-                .fileOverride()
-                .openDir(false)
+                .disableOpenDir()
                 .outputDir(path)
                 .author(System.getProperty("user.name"))
                 .dateType(DateType.ONLY_DATE);
@@ -112,9 +109,11 @@ public class MbpGenerator {
         if (StrUtil.isNotBlank(cg.getSchema())) {
             dsBuild.schema(cg.getSchema());
         }
+        InjectionConfig injectionConfig = new InjectionConfig.Builder().fileOverride().build();
         new AutoGenerator(dsBuild.build())
                 // 全局配置
                 .global(gcBuild.build())
+                .injection(injectionConfig)
                 // 包配置
                 .packageInfo(new PackageConfig.Builder().parent(cg.getMbpPackage()).build())
                 // 策略配置

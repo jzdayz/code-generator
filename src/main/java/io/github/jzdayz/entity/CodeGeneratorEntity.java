@@ -12,7 +12,6 @@ import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotBlank;
 
 /**
  * <p>
@@ -31,7 +30,6 @@ public class CodeGeneratorEntity implements Serializable {
     @TableId(value = "ID", type = IdType.AUTO)
     private Integer id;
 
-    @NotBlank
     private String jdbc;
 
     private String alias;
