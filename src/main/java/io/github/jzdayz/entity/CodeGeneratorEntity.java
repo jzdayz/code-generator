@@ -1,10 +1,14 @@
 package io.github.jzdayz.entity;
 
+import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author huqingfeng

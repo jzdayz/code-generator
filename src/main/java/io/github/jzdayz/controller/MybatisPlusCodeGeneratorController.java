@@ -2,6 +2,8 @@ package io.github.jzdayz.controller;
 
 import cn.hutool.core.bean.copier.BeanCopier;
 import cn.hutool.core.bean.copier.CopyOptions;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
 import io.github.jzdayz.entity.CodeGeneratorEntity;
 import io.github.jzdayz.logic.service.GeneratorCommon;
 import io.github.jzdayz.logic.service.MbpGenerator;
@@ -48,6 +50,7 @@ public class MybatisPlusCodeGeneratorController {
             throw bindException;
         }
         log.info("{}", entity);
+        entity.setAlias(StrUtil.isNotBlank(entity.getAlias()) ? entity.getAlias() : IdUtil.randomUUID());
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"mbg.zip\"");
         return new HttpEntity<>(generatorCommon.generator("mbp", entity), httpHeaders);
